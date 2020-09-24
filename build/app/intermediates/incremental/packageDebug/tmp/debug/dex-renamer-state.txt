@@ -1,4 +1,0 @@
-#Mon Sep 21 11:20:22 BRT 2020
-base.0=/Users/calebersmendes/Developer/10sem/PI2/zefiro-app/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
