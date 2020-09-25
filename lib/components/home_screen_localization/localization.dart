@@ -27,7 +27,7 @@ class Localization extends StatelessWidget {
                 child: Consumer<UserManager>(
                   builder: (context, userManager, child) {
                     return Text(
-                      '{$userManager.user.localization}',
+                      userManager.user.localization,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 20,
