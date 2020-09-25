@@ -5,4 +5,5 @@ class User {
 
   int age;
   Position position;
+  String localization;
 }

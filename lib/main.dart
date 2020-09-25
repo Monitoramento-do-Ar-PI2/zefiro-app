@@ -23,6 +23,7 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Color.fromARGB(255, 18, 18, 18),
           accentColor: Color.fromARGB(255, 82, 199, 217),
+          primaryColorLight: Color.fromARGB(255, 151, 151, 151),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
