@@ -26,14 +26,40 @@ class Localization extends StatelessWidget {
               Expanded(
                 child: Consumer<UserManager>(
                   builder: (context, userManager, child) {
-                    return Text(
-                      userManager.user.localization,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Theme.of(context).primaryColorLight,
-                      ),
-                    );
+                    if (userManager.loading)
+                      return Row(
+                        children: [
+                          Text(
+                            'Localizando',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Theme.of(context).primaryColorLight,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    Theme.of(context).primaryColorLight),
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          )
+                        ],
+                      );
+                    else
+                      return Text(
+                        userManager.user.localization,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).primaryColorLight,
+                        ),
+                      );
                   },
                 ),
               ),
