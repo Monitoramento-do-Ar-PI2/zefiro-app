@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:zefiro_app/models/user.dart';
@@ -20,23 +20,28 @@ class UserManager extends ChangeNotifier {
       SharedPreferences.getInstance();
 
   UserManager() {
-    print("UserManager Instanciado");
-    _loadCurrentUser();
+    _loadLocalData();
   }
 
-  Future<void> _loadCurrentUser() async {
+  Future<void> _loadLocalData() async {
     loading = true;
     final cepAbertoService = CepAbertoService();
-    final userData = await _sharedPreferences;
-    if (userData.getString('position') == null) {
-      user = User();
-      await user.getPosition();
+    final sharedPreferences = await _sharedPreferences;
+    user = User();
 
-      final lat = user.position.latitude;
-      final long = user.position.longitude;
-      user.localization =
-          await cepAbertoService.getLocalizationFromLatLong(lat, long);
+    if (sharedPreferences.getString('position') == null) {
+      await user.getPosition();
+      sharedPreferences.setString('position', jsonEncode(user.position));
     }
+
+    final localStoragePosition = sharedPreferences.get('position');
+    final positionJson = jsonDecode(localStoragePosition);
+    final lat = positionJson['latitude'];
+    final long = positionJson['longitude'];
+
+    user.localization =
+        await cepAbertoService.getLocalizationFromLatLong(lat, long);
+
     loading = false;
   }
 }
