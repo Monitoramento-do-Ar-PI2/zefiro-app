@@ -16,9 +16,6 @@ class User {
 
   Future<void> setAddress() async {
     await setPosition();
-    print("Chegou no setAddress");
-    print(position.latitude);
-    print(position.longitude);
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     final place = placemarks[0];

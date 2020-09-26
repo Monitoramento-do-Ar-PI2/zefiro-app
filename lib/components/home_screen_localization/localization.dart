@@ -8,7 +8,6 @@ class Localization extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //navegar para mapa de seleção de estação
-        print("tap");
       },
       child: Container(
         color: Theme.of(context).primaryColor,
