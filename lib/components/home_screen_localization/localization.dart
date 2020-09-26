@@ -51,6 +51,15 @@ class Localization extends StatelessWidget {
                           )
                         ],
                       );
+                    if (userManager.localizationError)
+                      return Text(
+                        'Defina uma localização',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).primaryColorLight,
+                        ),
+                      );
                     else
                       return Text(
                         userManager.user.localization,

@@ -8,6 +8,7 @@ import 'package:zefiro_app/services/cep_aberto_service.dart';
 class UserManager extends ChangeNotifier {
   User user;
   bool _loading = false;
+  bool localizationError = false;
 
   bool get loading => _loading;
 
@@ -38,9 +39,14 @@ class UserManager extends ChangeNotifier {
     final positionJson = jsonDecode(localStoragePosition);
     final lat = positionJson['latitude'];
     final long = positionJson['longitude'];
+    print(lat);
+    print(long);
 
-    user.localization =
-        await cepAbertoService.getLocalizationFromLatLong(lat, long);
+    user.localization = await cepAbertoService
+        .getLocalizationFromLatLong(lat, long)
+        .catchError((error, stackTrace) {
+      localizationError = true;
+    });
 
     loading = false;
   }

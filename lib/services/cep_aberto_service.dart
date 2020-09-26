@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
 const token = 'ecc33654d92812ef6b1387eb724e8344';
@@ -8,6 +9,13 @@ class CepAbertoService {
   final Dio dio = Dio();
 
   Future<String> getLocalizationFromLatLong(double lat, double long) async {
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      return client;
+    };
+
     final params = {'lat': lat, 'lng': long};
     dio.options.headers[HttpHeaders.authorizationHeader] = 'Token token=$token';
 
