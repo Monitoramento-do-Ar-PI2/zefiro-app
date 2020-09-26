@@ -8,6 +8,7 @@ class Localization extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //navegar para mapa de seleção de estação
+        print("tap");
       },
       child: Container(
         color: Theme.of(context).primaryColor,
@@ -26,22 +27,23 @@ class Localization extends StatelessWidget {
               Expanded(
                 child: Consumer<UserManager>(
                   builder: (context, userManager, child) {
-                    if (userManager.loading)
+                    if (userManager.loading ||
+                        userManager.user?.address == null)
                       return Row(
                         children: [
                           Text(
                             'Localizando',
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               color: Theme.of(context).primaryColorLight,
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: SizedBox(
-                              height: 20,
-                              width: 20,
+                              height: 18,
+                              width: 18,
                               child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation(
                                     Theme.of(context).primaryColorLight),
@@ -51,21 +53,12 @@ class Localization extends StatelessWidget {
                           )
                         ],
                       );
-                    if (userManager.localizationError)
-                      return Text(
-                        'Defina uma localização',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Theme.of(context).primaryColorLight,
-                        ),
-                      );
                     else
                       return Text(
-                        userManager.user.localization,
+                        userManager.user.address,
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           color: Theme.of(context).primaryColorLight,
                         ),
                       );
