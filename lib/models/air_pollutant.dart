@@ -1,0 +1,3 @@
+class AirPollutant {
+  double iqa;
+}
