@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zefiro_app/components/home_screen_localization/localization.dart';
+import 'package:zefiro_app/screens/home_screen/components/iqa_chart.dart';
+import 'package:zefiro_app/screens/home_screen/components/localization.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,7 +19,8 @@ class HomeScreen extends StatelessWidget {
           children: [
             //Itens da home screen
             //Localização
-            Localization()
+            Localization(),
+            IQAChart()
             //IQA
             //Grafico de histórico
             //Elementos respirando agora

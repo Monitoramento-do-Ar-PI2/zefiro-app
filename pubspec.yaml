@@ -33,6 +33,7 @@ dependencies:
   geocoding: ^1.0.4
   shared_preferences: ^0.5.12
   dio: ^3.0.10
+  syncfusion_flutter_gauges: ^18.2.59
 
 dev_dependencies:
   flutter_test:
