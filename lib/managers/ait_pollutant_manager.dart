@@ -26,17 +26,22 @@ class AirPollutantManager extends ChangeNotifier {
     airPollutant = AirPollutant();
     //requestNearestStation();
     //Fake api endpoint
-    double iqa;
+    Map<String, dynamic> iqa;
     await dio
-        .get('https://run.mocky.io/v3/38470183-bf24-4ad2-9238-95f4d3880927')
+        .get('https://run.mocky.io/v3/184761de-adfe-415e-9797-72aca2061d7e')
         .then((response) {
       print("Response $response");
-      iqa = response.data['airpollutant']['iqa'];
-    });
+      // iqa.add(response.data['airpollutant']['iqa']);
+      // iqa.add(response.data['airpollutant']['iqa_label']);
+      
+      var iqa_response = Map<String, dynamic>.from(response.data);
 
-    print("IQA : $iqa");
-    this.airPollutant.iqa = iqa;
-    loading = false;
+      final iqa = iqa_response['airpollutant'];
+      
+      this.airPollutant.iqa = iqa;
+      loading = false;      
+      
+    });
   }
 
   /*Future<void> requestNearestStation(Position userPosition) async {

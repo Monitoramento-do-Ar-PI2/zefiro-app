@@ -54,16 +54,17 @@ class IQAChart extends StatelessWidget {
                               ),
                             ),
                           )
-                        ] else ...[
+                        ] 
+                        else ...[
                           Text(
-                            '${iqa.round()}',
+                            '${iqa['iqa']}',
                             style: TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
                           ),
                           Text(
-                            "Regular",
+                            '${iqa['iqa_label'].toString().toUpperCase()}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 28,
@@ -78,7 +79,7 @@ class IQAChart extends StatelessWidget {
                 MarkerPointer(
                     value: airPollutantManager.airPollutant?.iqa == null
                         ? 400
-                        : iqa, //valor
+                        : iqa['iqa'], //valor
                     markerWidth: 20,
                     markerHeight: 20,
                     color: Colors.white,
