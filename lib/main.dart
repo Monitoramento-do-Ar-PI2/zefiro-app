@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zefiro_app/managers/ait_pollutant_manager.dart';
 import 'package:zefiro_app/managers/user_manager.dart';
-import 'package:zefiro_app/screens/home_screen.dart';
+import 'package:zefiro_app/screens/home_screen/home_screen.dart';
 
 void main() {
   runApp(App());
@@ -15,6 +16,10 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => UserManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AirPollutantManager(),
           lazy: false,
         )
       ],

@@ -34,6 +34,7 @@ dependencies:
   shared_preferences: ^0.5.12
   dio: ^3.0.10
   vector_math: ^2.0.8
+  syncfusion_flutter_gauges: ^18.2.59
 
 dev_dependencies:
   flutter_test:
