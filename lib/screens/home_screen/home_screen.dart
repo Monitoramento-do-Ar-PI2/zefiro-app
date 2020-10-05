@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zefiro_app/components/home_screen_localization/localization.dart';
+import 'package:provider/provider.dart';
+import 'package:zefiro_app/managers/ait_pollutant_manager.dart';
+import 'package:zefiro_app/screens/home_screen/components/iqa_chart.dart';
+import 'package:zefiro_app/screens/home_screen/components/localization.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,11 +21,23 @@ class HomeScreen extends StatelessWidget {
           children: [
             //Itens da home screen
             //Localização
-            Localization()
+            Localization(),
             //IQA
+            IQAChart(),
             //Grafico de histórico
             //Elementos respirando agora
             //Alerta de fumaça
+            //Request test button
+            Consumer<AirPollutantManager>(
+              builder: (context, airPollutantManager, child) {
+                return RaisedButton(
+                  child: Text('Fake Request'),
+                  onPressed: () {
+                    airPollutantManager.requestCurrentIQA();
+                  },
+                );
+              },
+            )
           ],
         ),
       ),
