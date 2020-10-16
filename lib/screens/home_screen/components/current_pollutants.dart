@@ -13,7 +13,16 @@ class CurrentPollutants extends StatelessWidget {
     final currentPollutants = airPollutantManager.airPollutant.currentPollutant;
     final mainCircleWidth = MediaQuery.of(context).size.width - 80;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Padding(
+          padding: EdgeInsets.only(left: 20, bottom: 20),
+          child: Text('O que estou respirando agora?',
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColorLight,
+                  fontWeight: FontWeight.bold)),
+        ),
         Stack(
           alignment: Alignment.center,
           children: [
