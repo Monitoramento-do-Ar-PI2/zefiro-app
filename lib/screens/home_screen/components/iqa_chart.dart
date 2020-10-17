@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:zefiro_app/managers/ait_pollutant_manager.dart';
+import 'package:zefiro_app/managers/air_pollutant_manager.dart';
 
 class IQAChart extends StatelessWidget {
   @override
@@ -41,7 +41,7 @@ class IQAChart extends StatelessWidget {
                               fontWeight: FontWeight.w100,
                               color: Colors.white),
                         ),
-                        if (airPollutantManager.loading) ...[
+                        if (airPollutantManager.iqaLoading) ...[
                           Padding(
                             padding: EdgeInsets.only(top: 20),
                             child: SizedBox(
@@ -54,8 +54,7 @@ class IQAChart extends StatelessWidget {
                               ),
                             ),
                           )
-                        ] 
-                        else ...[
+                        ] else ...[
                           Text(
                             '${iqa['iqa']}',
                             style: TextStyle(
