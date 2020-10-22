@@ -35,11 +35,12 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: (settings) {
           switch (settings.name) {
+            case '/home':
+              return MaterialPageRoute(
+                  builder: (_) => HomeScreen(), settings: settings);
             default:
               return MaterialPageRoute(
-                  //builder: (_) => HomeScreen(), settings: settings);
-                  builder: (_) => SplashScreen(),
-                  settings: settings);
+                  builder: (_) => SplashScreen(), settings: settings);
           }
         },
       ),
