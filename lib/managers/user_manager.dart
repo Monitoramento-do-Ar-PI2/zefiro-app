@@ -30,6 +30,7 @@ class UserManager extends ChangeNotifier {
     user = User();
     try {
       await user.setAddress();
+      await getUserData(user);
     } catch (e) {
       locationError = true;
       debugPrint(e);
@@ -77,6 +78,19 @@ class UserManager extends ChangeNotifier {
     await saveUserHealthProblems(healthProblems);
     loading = false;
     print('loading $loading');
+  }
+
+  Future<void> getUserData(User user) async {
+    loading = true;
+    final prefs = await SharedPreferences.getInstance();
+    user.age = prefs.getInt('userAge') ?? null;
+    user.healthProblems = prefs.getStringList('userHealthProblems') ?? null;
+    print('User age:');
+    print(user.age);
+    print('User health problems');
+    print(user.healthProblems);
+
+    loading = false;
   }
 
   //todo: implementar carregamento dos dados
