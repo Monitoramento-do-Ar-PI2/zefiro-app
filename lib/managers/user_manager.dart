@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zefiro_app/models/user.dart';
 
 class UserManager extends ChangeNotifier {
@@ -33,7 +34,50 @@ class UserManager extends ChangeNotifier {
       locationError = true;
       debugPrint(e);
     }
-
     loading = false;
   }
+
+  static Future<bool> userDataExists(Future<SharedPreferences> prefs) {
+    final key = 'userDataExists';
+    Future<bool> value = prefs.then((SharedPreferences p) {
+      return (p.getBool(key) ?? false);
+    });
+    print('Value found <${value.toString()}>');
+    return value;
+  }
+
+  static Future<void> saveUserHealthProblems(
+      List<String> healthProblems) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'userHealthProblems';
+    await prefs.setStringList(key, healthProblems);
+  }
+
+  static Future<void> saveUserAge(int age) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'userAge';
+    await prefs.setInt(key, age);
+  }
+
+  static Future<void> setUserDataFlag(bool f) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'userDataExists';
+    await prefs.setBool(key, f);
+  }
+
+  Future<void> saveUserData(int age, List<String> healthProblems) async {
+    loading = true;
+    await Future.delayed(Duration(seconds: 3));
+    print('loading $loading');
+    print('Savind user data');
+    print(age);
+    print(healthProblems);
+    await setUserDataFlag(true);
+    await saveUserAge(age);
+    await saveUserHealthProblems(healthProblems);
+    loading = false;
+    print('loading $loading');
+  }
+
+  //todo: implementar carregamento dos dados
 }

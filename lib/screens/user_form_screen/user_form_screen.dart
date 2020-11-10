@@ -1,5 +1,7 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zefiro_app/managers/user_manager.dart';
 
 class UserFormScreen extends StatefulWidget {
   @override
@@ -124,23 +126,43 @@ class _UserFormScreenState extends State<UserFormScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                RaisedButton(
-                  onPressed: () {},
-                  color: Theme.of(context).accentColor,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'SALVAR',
-                        style: TextStyle(letterSpacing: 4, color: Colors.black),
+                Consumer<UserManager>(
+                  builder: (context, userManager, child) {
+                    return RaisedButton(
+                      onPressed: () async {
+                        await userManager.saveUserData(age, userChoices);
+                        Navigator.of(context).pushNamed('/home');
+                      },
+                      color: Theme.of(context).accentColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          if (userManager.loading) ...[
+                            SizedBox(
+                              height: 18,
+                              width: 18,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    Theme.of(context).primaryColor),
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          ] else ...[
+                            Text(
+                              'SALVAR',
+                              style: TextStyle(
+                                  letterSpacing: 4, color: Colors.black),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.black,
+                              size: 18,
+                            )
+                          ]
+                        ],
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 18,
-                      )
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ],
             )

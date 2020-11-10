@@ -39,11 +39,14 @@ class App extends StatelessWidget {
             case '/home':
               return MaterialPageRoute(
                   builder: (_) => HomeScreen(), settings: settings);
+            case '/userForm':
+              return MaterialPageRoute(
+                  builder: (context) => UserFormScreen(), settings: settings);
             default:
               return MaterialPageRoute(
-                  //builder: (_) => SplashScreen(), settings: settings);
-                  builder: (_) => UserFormScreen(),
-                  settings: settings);
+                  builder: (_) => SplashScreen(), settings: settings);
+            //builder: (_) => UserFormScreen(),
+            //settings: settings);
           }
         },
       ),
