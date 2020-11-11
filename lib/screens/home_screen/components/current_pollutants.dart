@@ -37,27 +37,27 @@ class CurrentPollutants extends StatelessWidget {
                 airPollutantManager.currentPollutantsLoading) ...[
               Container()
             ] else ...[
-              _buildButton(context, 0, mainCircleWidth,
+              _buildButton(context, 0, mainCircleWidth, 'pollutant1',
                   pollutant: 'PTS',
                   value: double.parse(currentPollutants['PTS']),
                   pollutantMax: 876),
-              _buildButton(context, 60, mainCircleWidth,
+              _buildButton(context, 60, mainCircleWidth, 'pollutant2',
                   pollutant: 'PM10',
                   value: double.parse(currentPollutants['PM10']),
                   pollutantMax: 500),
-              _buildButton(context, 120, mainCircleWidth,
+              _buildButton(context, 120, mainCircleWidth, 'pollutant3',
                   pollutant: 'SO2',
                   value: double.parse(currentPollutants['SO2']),
                   pollutantMax: 2100),
-              _buildButton(context, 180, mainCircleWidth,
+              _buildButton(context, 180, mainCircleWidth, 'pollutant4',
                   pollutant: 'NO2',
                   value: double.parse(currentPollutants['NO2']),
                   pollutantMax: 3000),
-              _buildButton(context, 240, mainCircleWidth,
+              _buildButton(context, 240, mainCircleWidth, 'pollutant5',
                   pollutant: 'CO',
                   value: double.parse(currentPollutants['CO']),
                   pollutantMax: 40),
-              _buildButton(context, 300, mainCircleWidth,
+              _buildButton(context, 300, mainCircleWidth, 'pollutant6',
                   pollutant: 'O3',
                   value: double.parse(currentPollutants['O3']),
                   pollutantMax: 1000),
@@ -67,6 +67,7 @@ class CurrentPollutants extends StatelessWidget {
               width: mainCircleWidth / 6,
               height: mainCircleWidth / 6,
               child: FloatingActionButton(
+                heroTag: 'centerCircle',
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -100,6 +101,7 @@ class CurrentPollutants extends StatelessWidget {
   }
 
   _buildButton(BuildContext context, double angle, double mainCircleWidth,
+      String heroTag,
       {String pollutant, double value, double pollutantMax}) {
     final airPollutantManager = context.watch<AirPollutantManager>();
     final size = (value / pollutantMax);
@@ -113,6 +115,7 @@ class CurrentPollutants extends StatelessWidget {
         width: 50 + size * 40,
         height: 50 + size * 40,
         child: FloatingActionButton(
+          heroTag: heroTag,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text('$pollutant')],
