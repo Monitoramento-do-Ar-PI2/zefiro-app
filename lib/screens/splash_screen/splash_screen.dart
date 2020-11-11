@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zefiro_app/managers/user_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -7,11 +9,20 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   double opacity = 1;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   @override
   void initState() {
     super.initState();
-    _navigateHome();
+    nextScreen();
+  }
+
+  void nextScreen() async {
+    Future<bool> userDataExists = UserManager.userDataExists(_prefs);
+
+    userDataExists.then((value) {
+      value == true ? _navigateHome() : _navigateUserForm();
+    });
   }
 
   void _navigateHome() async {
@@ -21,6 +32,15 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     await Future.delayed(Duration(seconds: 1));
     Navigator.of(context).pushReplacementNamed('/home');
+  }
+
+  void _navigateUserForm() async {
+    await Future.delayed(Duration(seconds: 3));
+    setState(() {
+      opacity = 0;
+    });
+    await Future.delayed(Duration(seconds: 1));
+    Navigator.of(context).pushReplacementNamed('/userForm');
   }
 
   @override

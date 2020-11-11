@@ -5,8 +5,9 @@ class User {
   int age;
   Position position;
   String address;
+  List<String> healthProblems;
 
-  User({this.age, this.position, this.address});
+  User({this.age, this.position, this.address, this.healthProblems});
 
   Future<void> setPosition() async {
     Position position =

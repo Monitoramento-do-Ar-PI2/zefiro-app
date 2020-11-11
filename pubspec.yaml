@@ -35,6 +35,7 @@ dependencies:
   dio: ^3.0.10
   vector_math: ^2.0.8
   syncfusion_flutter_gauges: ^18.2.59
+  chips_choice: ^2.0.1
 
 dev_dependencies:
   flutter_test:

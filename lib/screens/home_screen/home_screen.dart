@@ -15,6 +15,20 @@ class HomeScreen extends StatelessWidget {
           style:
               TextStyle(color: Theme.of(context).accentColor, letterSpacing: 4),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.favorite),
+            color: Theme.of(context).primaryColorLight,
+            onPressed: () {
+              Navigator.of(context).pushNamed('/userForm');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            color: Theme.of(context).primaryColorLight,
+            onPressed: () {},
+          )
+        ],
       ),
       backgroundColor: Theme.of(context).primaryColor,
       body: SingleChildScrollView(
