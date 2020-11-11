@@ -13,9 +13,10 @@ class _UserFormScreenState extends State<UserFormScreen> {
   List<String> healthProblems = [
     'Asma',
     'Bronquite',
-    'Teste',
+    'Tuberculose',
     'Pneumonia',
-    'Cardiopatia'
+    'Cardiopatia',
+    'Rinite'
   ];
   List<String> userChoices = [];
 
@@ -131,7 +132,8 @@ class _UserFormScreenState extends State<UserFormScreen> {
                     return RaisedButton(
                       onPressed: () async {
                         await userManager.saveUserData(age, userChoices);
-                        Navigator.of(context).pushNamed('/home');
+                        Navigator.of(context)
+                            .popUntil(ModalRoute.withName('/home'));
                       },
                       color: Theme.of(context).accentColor,
                       child: Row(

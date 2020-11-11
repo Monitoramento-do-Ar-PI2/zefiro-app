@@ -35,6 +35,8 @@ class UserManager extends ChangeNotifier {
       locationError = true;
       debugPrint(e);
     }
+    //final prefs = await SharedPreferences.getInstance();
+    //prefs.clear();
     loading = false;
   }
 
