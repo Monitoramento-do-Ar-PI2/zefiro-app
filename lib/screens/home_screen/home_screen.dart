@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zefiro_app/managers/recomendations_manager.dart';
 import 'package:zefiro_app/screens/home_screen/components/current_pollutants.dart';
 import 'package:provider/provider.dart';
 import 'package:zefiro_app/managers/air_pollutant_manager.dart';
@@ -8,6 +9,8 @@ import 'package:zefiro_app/screens/home_screen/components/localization.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    RecomendationsManager recomendationsManager =
+        context.watch<RecomendationsManager>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -26,7 +29,10 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.notifications),
             color: Theme.of(context).primaryColorLight,
-            onPressed: () {},
+            onPressed: () async {
+              await recomendationsManager.requestRecomendations();
+              Navigator.of(context).pushNamed('/recomendations');
+            },
           )
         ],
       ),
