@@ -35,6 +35,10 @@ dependencies:
   dio: ^3.0.10
   vector_math: ^2.0.8
   syncfusion_flutter_gauges: ^18.2.59
+  firebase_core: ^0.5.2
+  firebase_auth: ^0.18.3
+  cloud_firestore: ^0.14.3
+  firebase_messaging: ^7.0.3
 
 dev_dependencies:
   flutter_test:

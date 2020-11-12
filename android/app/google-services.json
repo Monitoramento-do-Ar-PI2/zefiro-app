@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "717130737811",
+    "firebase_url": "https://zefiro-app.firebaseio.com",
+    "project_id": "zefiro-app",
+    "storage_bucket": "zefiro-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717130737811:android:fba6ed8df3d29a48270566",
+        "android_client_info": {
+          "package_name": "com.example.zefiro_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717130737811-8m0sn9dnm5k8kunq27uhmn91aprmtjal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-C4KBD9Czh6YJkf-i-VBQia7sSZ7DosU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717130737811-8m0sn9dnm5k8kunq27uhmn91aprmtjal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

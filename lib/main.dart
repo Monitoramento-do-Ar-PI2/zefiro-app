@@ -1,15 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zefiro_app/managers/air_pollutant_manager.dart';
 import 'package:zefiro_app/managers/user_manager.dart';
 import 'package:zefiro_app/screens/home_screen/home_screen.dart';
+import 'package:zefiro_app/notification.dart';
 
-void main() {
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(App());
 }
 
 class App extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -39,7 +46,12 @@ class App extends StatelessWidget {
                   builder: (_) => HomeScreen(), settings: settings);
           }
         },
+        home: Scaffold(
+          body: MessageHandler(),
+        ),
       ),
     );
   }
 }
+
+
